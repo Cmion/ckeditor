@@ -23,18 +23,35 @@ import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 import Indent from '@ckeditor/ckeditor5-indent/src/indent';
 import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
-import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
+// import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
+import Font from '@ckeditor/ckeditor5-font/src/font';
+import FontFamily from '@ckeditor/ckeditor5-font/src/fontfamily';
+import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight';
+import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
+import MathType from '@wiris/mathtype-ckeditor5';
+import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
+import PageBreak from '@ckeditor/ckeditor5-page-break/src/pagebreak';
+import FindAndReplace from '@ckeditor/ckeditor5-find-and-replace/src/findandreplace';
+import ExportPdf from '@ckeditor/ckeditor5-export-pdf/src/exportpdf';
 
-export default class ClassicEditor extends ClassicEditorBase {}
+export default class ClassicEditor extends ClassicEditorBase { }
 
 // Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
+	Alignment,
+	PageBreak,
+	ExportPdf,
+	Highlight,
+	FindAndReplace,
+	Font,
+	FontFamily,
 	Essentials,
 	UploadAdapter,
 	Autoformat,
@@ -58,7 +75,9 @@ ClassicEditor.builtinPlugins = [
 	PasteFromOffice,
 	Table,
 	TableToolbar,
-	TextTransformation
+	TextTransformation,
+	HorizontalLine,
+	MathType
 ];
 
 // Editor configuration.
@@ -67,21 +86,40 @@ ClassicEditor.defaultConfig = {
 		items: [
 			'heading',
 			'|',
+			'fontfamily',
+			'fontsize',
+			'|',
+			'alignment:left', 'alignment:right', 'alignment:center', 'alignment:justify',
+			'|',
+			'fontColor',
+			'fontBackgroundColor',
+			'|',
 			'bold',
 			'italic',
+			'strikethrough',
+			'underline',
+			'subscript',
+			'superscript',
+			'|',
 			'link',
-			'bulletedList',
-			'numberedList',
 			'|',
 			'outdent',
 			'indent',
 			'|',
-			'uploadImage',
-			'blockQuote',
+			'bulletedList',
+			'numberedList',
+			'todoList',
+			'|',
+			'code',
+			'|',
 			'insertTable',
+			'|',
+			'uploadImage',
 			'mediaEmbed',
+			'blockQuote',
+			'|',
 			'undo',
-			'redo'
+			'redo', '|', 'horizontalLine', 'MathType', 'ChemType', 'pageBreak', 'findAndReplace', 'highlight', '|', 'exportPdf'
 		]
 	},
 	image: {
@@ -99,6 +137,67 @@ ClassicEditor.defaultConfig = {
 			'tableColumn',
 			'tableRow',
 			'mergeTableCells'
+		]
+	},
+	blockToolbar: [
+		'paragraph',
+		'heading1',
+		'heading2',
+		'heading3',
+		'|',
+		'bulletedList',
+		'numberedList',
+		'|',
+		'blockQuote',
+		'uploadImage',
+	],
+	fontFamily: {
+		options: [
+			'default',
+			'Ubuntu, Arial, sans-serif',
+			'Ubuntu Mono, Courier New, Courier, monospace',
+		],
+		supportAllValues: true,
+	},
+	fontSize: {
+		options: [9, 11, 13, 'default', 17, 19, 21],
+		supportAllValues: true,
+	},
+	fontColor: {
+		columns: 3,
+		documentColors: 12,
+		colors: [
+			{
+				color: 'hsl(0, 0%, 0%)',
+				label: 'Black',
+			},
+			{
+				color: 'hsl(0, 0%, 30%)',
+				label: 'Dim grey',
+			},
+			{
+				color: 'hsl(0, 0%, 60%)',
+				label: 'Grey',
+			},
+			{
+				color: 'hsl(0, 0%, 90%)',
+				label: 'Light grey',
+			},
+			{
+				color: 'hsl(0, 0%, 100%)',
+				label: 'White',
+				hasBorder: true,
+			},
+		],
+	},
+	highlight: {
+		options: [
+			{ model: 'yellowMarker', class: 'marker-yellow', title: 'Yellow Marker', color: 'var(--ck-highlight-marker-yellow)', type: 'marker' },
+			{ model: 'greenMarker', class: 'marker-green', title: 'Green marker', color: 'var(--ck-highlight-marker-green)', type: 'marker' },
+			{ model: 'pinkMarker', class: 'marker-pink', title: 'Pink marker', color: 'var(--ck-highlight-marker-pink)', type: 'marker' },
+			{ model: 'blueMarker', class: 'marker-blue', title: 'Blue marker', color: 'var(--ck-highlight-marker-blue)', type: 'marker' },
+			{ model: 'redPen', class: 'pen-red', title: 'Red pen', color: 'var(--ck-highlight-pen-red)', type: 'pen' },
+			{ model: 'greenPen', class: 'pen-green', title: 'Green pen', color: 'var(--ck-highlight-pen-green)', type: 'pen' }
 		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
