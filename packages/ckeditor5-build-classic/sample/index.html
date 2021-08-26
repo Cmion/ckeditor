@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<title>CKEditor 5 – classic editor build – development sample</title>
@@ -10,34 +11,129 @@
 		}
 	</style>
 </head>
+
 <body>
 
-<h1>CKEditor 5 – classic editor build – development sample</h1>
+	<h1>CKEditor 5 – classic editor build – development sample</h1>
 
-<div id="editor">
-	<h2>Sample</h2>
+	<div id="editor">
+		<h2>Sample</h2>
 
-	<p>This is an instance of the <a href="https://ckeditor.com/docs/ckeditor5/latest/builds/guides/overview.html#classic-editor">classic editor build</a>.</p>
+		<p>This is an instance of the <a
+				href="https://ckeditor.com/docs/ckeditor5/latest/builds/guides/overview.html#classic-editor">classic
+				editor build</a>.</p>
 
-	<figure class="image">
-		<img src="../tests/manual/sample.jpg" alt="Autumn fields" />
-	</figure>
+		<figure class="image">
+			<img src="../tests/manual/sample.jpg" alt="Autumn fields" />
+		</figure>
 
-	<p>You can use this sample to validate whether your <a href="https://ckeditor.com/docs/ckeditor5/latest/builds/guides/development/custom-builds.html">custom build</a> works fine.</p>
-</div>
+		<p>You can use this sample to validate whether your <a
+				href="https://ckeditor.com/docs/ckeditor5/latest/builds/guides/development/custom-builds.html">custom
+				build</a> works fine.</p>
+	</div>
 
-<script src="../build/ckeditor.js"></script>
-<script type="module">
-	// import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
-	ClassicEditor.create( document.querySelector( '#editor' ) )
-		.then( editor => {
-			// CKEditorInspector.attach( editor );
-			window.editor = editor;
-		} )
-		.catch( error => {
-			console.error( 'There was a problem initializing the editor.', error );
-		} );
-</script>
+	<script src="../build/ckeditor.js"></script>
+	<script type="module">
+
+		function getToken() {
+			return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYwODllNjJjNTAzZDdjMDkzM2E2NzkzNiIsInVzZXJUeXBlIjoiVGVhY2hlciIsImVtYWlsIjoiNWIxNDIyNTcxZmJiMDE4MS9jZTk2ODY5NzE0YTRjNGViMTJhNGIzZWEyMGViNGY3MzY5NDU1ZjIwODliYzY4YjYxNWNkMTBmMTgwYzcxZTUxIiwiZmlyc3ROYW1lIjoiU29maWEiLCJsYXN0TmFtZSI6IldoaXRlIiwiYWNjb3VudCI6IjYwODgwNWE0ZjljMGNlZDM5ZmE2ZTZiYyJ9LCJhY2Nlc3NUb2tlbiI6IkFUXzYwODllNjJjNTAzZDdjMDkzM2E2NzkzNi1kSFFoVTVySjJ2R2JmYTFQRjdxbmt3NloiLCJhdXRoSWQiOiI2MDg5ZTYyYzUwM2Q3YzA5MzNhNjc5MzYiLCJhY2NvdW50Ijp7Il9pZCI6IjYwODgwNWE0ZjljMGNlZDM5ZmE2ZTZiYyIsIm5hbWUiOiJTVEVNdWxpIChEZXYpIFNhbmRib3gifSwicm9sZSI6eyJfaWQiOiI2MGE2NWQ4YzcwMWEzMjc0ODUxMGYzYWEiLCJhY2NvdW50IjoiNjA4ODA1YTRmOWMwY2VkMzlmYTZlNmJjIiwibmFtZSI6IlRlYWNoZXIiLCJfX3YiOjAsImNyZWF0ZWRBdCI6IjIwMjEtMDUtMjBUMTM6MDE6MDAuNzUyWiIsInByaXZpbGVnZXMiOnsiYWNjb3VudCI6eyJvd24iOnsicmVhZCI6dHJ1ZSwid3JpdGUiOnRydWV9LCJhY2NvdW50Ijp7InJlYWQiOnRydWUsIndyaXRlIjpmYWxzZX0sImFsbCI6eyJyZWFkIjpmYWxzZSwid3JpdGUiOmZhbHNlfX0sInVzZXIiOnsib3duIjp7InJlYWQiOnRydWUsIndyaXRlIjp0cnVlfSwiYWNjb3VudCI6eyJyZWFkIjp0cnVlLCJ3cml0ZSI6ZmFsc2V9LCJhbGwiOnsicmVhZCI6ZmFsc2UsIndyaXRlIjpmYWxzZX19LCJldmVudHMiOnsib3duIjp7InJlYWQiOnRydWUsIndyaXRlIjp0cnVlfSwiYWNjb3VudCI6eyJyZWFkIjp0cnVlLCJ3cml0ZSI6ZmFsc2V9LCJhbGwiOnsicmVhZCI6ZmFsc2UsIndyaXRlIjpmYWxzZX19LCJjaGF0TWVzc2FnZSI6eyJvd24iOnsicmVhZCI6dHJ1ZSwid3JpdGUiOnRydWV9LCJhY2NvdW50Ijp7InJlYWQiOnRydWUsIndyaXRlIjpmYWxzZX0sImFsbCI6eyJyZWFkIjpmYWxzZSwid3JpdGUiOmZhbHNlfX0sImNoYW5uZWxzIjp7Im93biI6eyJyZWFkIjp0cnVlLCJ3cml0ZSI6dHJ1ZX0sImFjY291bnQiOnsicmVhZCI6dHJ1ZSwid3JpdGUiOmZhbHNlfSwiYWxsIjp7InJlYWQiOmZhbHNlLCJ3cml0ZSI6ZmFsc2V9fX0sInVwZGF0ZWRBdCI6IjIwMjEtMDctMzFUMTg6MzM6MTIuOTExWiJ9LCJpYXQiOjE2Mjc3NTYzOTIsImV4cCI6MjIzMjU1NjM5Mn0.bPmkzkUvkQG8RnF9TlN63wuwMsowhR08yOpWNGP0liI'
+		}
+		class MyUploadAdapter {
+			constructor(props) {
+				// CKEditor 5's FileLoader instance.
+				this.loader = props;
+				// URL where to send files.
+				this.url = `https://apidev.stemuli.net/api/v1/files`;
+			}
+
+			// Starts the upload process.
+			upload() {
+				return new Promise((resolve, reject) => {
+					this._initRequest();
+					this._initListeners(resolve, reject);
+					this._sendRequest();
+				});
+			}
+
+			// Aborts the upload process.
+			abort() {
+				if (this.xhr) {
+					this.xhr.abort();
+				}
+			}
+
+			// Example implementation using XMLHttpRequest.
+			_initRequest() {
+				const xhr = this.xhr = new XMLHttpRequest();
+
+				xhr.open('POST', this.url, true);
+				xhr.responseType = 'json';
+				xhr.setRequestHeader('Access-Control-Allow-Origin', '*')
+				xhr.setRequestHeader('Authorization', getToken())
+			}
+
+			// Initializes XMLHttpRequest listeners.
+			_initListeners(resolve, reject) {
+				const xhr = this.xhr;
+				const loader = this.loader;
+				const genericErrorText = 'Could not upload file:' + ` ${loader.file.name}.`;
+
+				xhr.addEventListener('error', () => reject(genericErrorText));
+				xhr.addEventListener('abort', () => reject());
+				xhr.addEventListener('load', () => {
+					const response = xhr.response;
+					if (!response || response.error) {
+						return reject(response && response.error ? response.error.message : genericErrorText);
+					}
+
+					// If the upload is successful, resolve the upload promise with an object containing
+					// at least the "default" URL, pointing to the image on the server.
+					resolve({
+						default: response?.data?.url,
+						response,
+					});
+				});
+
+				if (xhr.upload) {
+					xhr.upload.addEventListener('progress', evt => {
+						if (evt.lengthComputable) {
+							loader.uploadTotal = evt.total;
+							loader.uploaded = evt.loaded;
+						}
+					});
+				}
+			}
+
+			// Prepares the data and sends the request.
+			_sendRequest() {
+				const data = new FormData();
+
+				this.loader.file.then(result => {
+					data.append('file', result);
+					this.xhr.send(data);
+				}
+				)
+			}
+
+		}
+		function MyCustomUploadAdapterPlugin(editor) {
+			editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+				return new MyUploadAdapter(loader)
+			}
+		}
+
+		ClassicEditor.create(document.querySelector('#editor'), {
+			extraPlugins: [MyCustomUploadAdapterPlugin],
+		})
+			.then(editor => {
+				// CKEditorInspector.attach( editor );
+				window.editor = editor;
+			})
+			.catch(error => {
+				console.error('There was a problem initializing the editor.', error);
+			});
+	</script>
 
 </body>
+
 </html>
