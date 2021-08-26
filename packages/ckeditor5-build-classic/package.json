@@ -52,6 +52,7 @@
     "@ckeditor/ckeditor5-paste-from-office": "^29.1.0",
     "@ckeditor/ckeditor5-table": "^29.1.0",
     "@ckeditor/ckeditor5-typing": "^29.1.0",
+    "@ckeditor/ckeditor5-ui": "^29.1.0",
     "@webspellchecker/wproofreader-ckeditor5": "^2.0.6",
     "@wiris/mathtype-ckeditor5": "^7.27.0"
   },
@@ -59,6 +60,7 @@
     "@ckeditor/ckeditor5-core": "^29.1.0",
     "@ckeditor/ckeditor5-dev-utils": "^25.3.0",
     "@ckeditor/ckeditor5-dev-webpack-plugin": "^25.0.0",
+    "@ckeditor/ckeditor5-inspector": "^2.2.2",
     "@ckeditor/ckeditor5-revision-history": "^29.1.0",
     "@ckeditor/ckeditor5-theme-lark": "^29.1.0",
     "postcss-loader": "^3.0.0",

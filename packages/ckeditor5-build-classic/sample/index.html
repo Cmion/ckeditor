@@ -27,9 +27,11 @@
 </div>
 
 <script src="../build/ckeditor.js"></script>
-<script>
+<script type="module">
+	// import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 	ClassicEditor.create( document.querySelector( '#editor' ) )
 		.then( editor => {
+			// CKEditorInspector.attach( editor );
 			window.editor = editor;
 		} )
 		.catch( error => {

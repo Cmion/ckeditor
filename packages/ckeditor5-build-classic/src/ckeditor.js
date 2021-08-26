@@ -5,7 +5,7 @@
 
 // The editor creator to use.
 import ClassicEditorBase from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
-
+import TodoList from '@ckeditor/ckeditor5-list/src/todolist';
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import UploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter';
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
@@ -16,12 +16,16 @@ import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import Image from '@ckeditor/ckeditor5-image/src/image';
+// import Imageblock from '@ckeditor/ckeditor5-image/src/imageblock';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
+import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
 import Indent from '@ckeditor/ckeditor5-indent/src/indent';
 import Link from '@ckeditor/ckeditor5-link/src/link';
+import ImageInsert from '@ckeditor/ckeditor5-image/src/imageinsert';
+import AutoImage from '@ckeditor/ckeditor5-image/src/autoimage';
 import List from '@ckeditor/ckeditor5-list/src/list';
 // import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
@@ -40,11 +44,22 @@ import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 import PageBreak from '@ckeditor/ckeditor5-page-break/src/pagebreak';
 import FindAndReplace from '@ckeditor/ckeditor5-find-and-replace/src/findandreplace';
 import ExportPdf from '@ckeditor/ckeditor5-export-pdf/src/exportpdf';
+import BlockToolbar from '@ckeditor/ckeditor5-ui/src/toolbar/block/blocktoolbar';
+import HeadingButtonsUI from '@ckeditor/ckeditor5-heading/src/headingbuttonsui';
+import ParagraphButtonUI from '@ckeditor/ckeditor5-paragraph/src/paragraphbuttonui';
+import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
+import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
+import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
+import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript';
+import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
+import IndentBlock from '@ckeditor/ckeditor5-indent/src/indentblock';
+import { COLORS } from './_config';
 
 export default class ClassicEditor extends ClassicEditorBase { }
 
 // Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
+	IndentBlock,
 	Alignment,
 	PageBreak,
 	ExportPdf,
@@ -67,6 +82,9 @@ ClassicEditor.builtinPlugins = [
 	ImageStyle,
 	ImageToolbar,
 	ImageUpload,
+	ImageResize,
+	ImageInsert,
+	AutoImage,
 	Indent,
 	Link,
 	List,
@@ -77,7 +95,8 @@ ClassicEditor.builtinPlugins = [
 	TableToolbar,
 	TextTransformation,
 	HorizontalLine,
-	MathType
+	MathType,
+	TodoList, BlockToolbar, ParagraphButtonUI, HeadingButtonsUI, Underline, Strikethrough, Code, Subscript, Superscript
 ];
 
 // Editor configuration.
@@ -100,6 +119,7 @@ ClassicEditor.defaultConfig = {
 			'underline',
 			'subscript',
 			'superscript',
+			'code',
 			'|',
 			'link',
 			'|',
@@ -110,11 +130,10 @@ ClassicEditor.defaultConfig = {
 			'numberedList',
 			'todoList',
 			'|',
-			'code',
-			'|',
 			'insertTable',
 			'|',
 			'uploadImage',
+			'resizeImage',
 			'mediaEmbed',
 			'blockQuote',
 			'|',
@@ -132,6 +151,53 @@ ClassicEditor.defaultConfig = {
 			'imageTextAlternative'
 		]
 	},
+	resizeOptions: [
+		{
+			name: 'resizeImage:original',
+			value: null,
+			label: 'Original'
+		},
+		{
+			name: 'resizeImage:10',
+			value: '10',
+			label: '10%'
+		}, {
+			name: 'resizeImage:20',
+			value: '20',
+			label: '20%'
+		}, {
+			name: 'resizeImage:30',
+			value: '30',
+			label: '30%'
+		}, {
+			name: 'resizeImage:40',
+			value: '40',
+			label: '40%'
+		}, {
+			name: 'resizeImage:50',
+			value: '50',
+			label: '50%'
+		},
+		{
+			name: 'resizeImage:60',
+			value: '60',
+			label: '60%'
+		},
+		{
+			name: 'resizeImage:70',
+			value: '70',
+			label: '70%'
+		},
+		{
+			name: 'resizeImage:80',
+			value: '80',
+			label: '80%'
+		}, {
+			name: 'resizeImage:90',
+			value: '90',
+			label: '90%'
+		}
+	],
 	table: {
 		contentToolbar: [
 			'tableColumn',
@@ -154,8 +220,14 @@ ClassicEditor.defaultConfig = {
 	fontFamily: {
 		options: [
 			'default',
-			'Ubuntu, Arial, sans-serif',
-			'Ubuntu Mono, Courier New, Courier, monospace',
+			'Arial, Helvetica, sans-serif',
+			'Courier New, Courier, monospace',
+			'Georgia, serif',
+			'Lucida Sans Unicode, Lucida Grande, sans-serif',
+			'Tahoma, Geneva, sans-serif',
+			'Times New Roman, Times, serif',
+			'Trebuchet MS, Helvetica, sans-serif',
+			'Verdana, Geneva, sans-serif'
 		],
 		supportAllValues: true,
 	},
@@ -164,31 +236,14 @@ ClassicEditor.defaultConfig = {
 		supportAllValues: true,
 	},
 	fontColor: {
-		columns: 3,
+		columns: 10,
 		documentColors: 12,
-		colors: [
-			{
-				color: 'hsl(0, 0%, 0%)',
-				label: 'Black',
-			},
-			{
-				color: 'hsl(0, 0%, 30%)',
-				label: 'Dim grey',
-			},
-			{
-				color: 'hsl(0, 0%, 60%)',
-				label: 'Grey',
-			},
-			{
-				color: 'hsl(0, 0%, 90%)',
-				label: 'Light grey',
-			},
-			{
-				color: 'hsl(0, 0%, 100%)',
-				label: 'White',
-				hasBorder: true,
-			},
-		],
+		colors: COLORS
+	},
+	fontBackgroundColor: {
+		columns: 10,
+		documentColors: 12,
+		colors: COLORS
 	},
 	highlight: {
 		options: [
